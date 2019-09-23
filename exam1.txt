@@ -1,0 +1,8 @@
+KNOW:
+open(), different modes and errors
+read()
+write()
+fork()
+wait()
+ptr_t
+ps -ef
