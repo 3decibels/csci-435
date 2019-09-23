@@ -13,7 +13,7 @@
 #include <errno.h>
 #include <string.h>
 
-#define BUFFER_SIZE = 4;
+#define BUFFER_SIZE 4;
 
 int main(int argc, char *argv[]) {
 	int fd, bytesRead;
