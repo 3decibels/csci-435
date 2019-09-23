@@ -18,7 +18,7 @@
 int main(int argc, char *argv[]) {
 	int fd, bytesRead;
 	pid_t pid;
-	char buf[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE];
 
 	fd = open("./a2", O_RDONLY);
 	if (fd == -1) {
