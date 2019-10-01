@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
@@ -35,6 +36,7 @@ int main(int argc, char *argv[]) {
     else if (pid > 0) {
         // Parent PID
         // Prints and feeds data to child PID
+        int ret;
         close(fd[0]);
         for (int i = strlen(buf)-1; i >= 0; i = i-2) {
             printf("parent process (PID: %ld) prints %c\n", (long)getpid(), buf[i]);
@@ -43,7 +45,7 @@ int main(int argc, char *argv[]) {
             }
         }
         close(fd[1]);
-        termPid = wait();
+        termPid = wait(ret);
         printf("child process with PID %ld terminates\n", termPid);
     }
     else if (pid == 0) {
