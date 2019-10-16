@@ -16,8 +16,8 @@
 
 
 int main(int argc, char *argv[]) {
-    int dn, fd[2];
-    pid_t pid, termPid;
+    int fd[2];
+    pid_t pid;
 
     if (pipe(fd) == -1) {
         fprintf(stderr, "Pipe failed: %s\n", strerror(errno));
