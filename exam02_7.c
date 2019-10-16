@@ -30,11 +30,12 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
     else if (pid > 0) {
+        int ret;
         close(fd[0]);
         printf("Parent process goes first\n");
         write(fd[1], 0, 1);
         close(fd[1]);
-        wait();
+        wait(&ret);
     }
     else if (pid == 0) {
         // Child PID reads data from pipe
