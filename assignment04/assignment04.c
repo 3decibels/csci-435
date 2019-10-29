@@ -21,7 +21,10 @@ void handle_sigint(int signum) {
     if (count < 2) {
         count++;
     } else {
-        signal(SIGINT, SIG_DFL);
+        if (signal(SIGINT, SIG_DFL) == SIG_ERR) {
+        	fprintf(stderr, "Failed to reset SIGINT handler to default");
+        	exit(EXIT_FAILURE);
+        }
     }
 }
 
@@ -36,7 +39,10 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < 5; ++i) {
         x = fork();
         if( x == 0 ) {
-            sigaction(SIGINT, &newaction, NULL);
+            if (sigaction(SIGINT, &newaction, NULL) == -1) {
+            	fprintf(stderr, "Failed to set SIGINT handler");
+            	exit(EXIT_FAILURE);
+            }
             while(1) {
                 sleep(100);
             }
@@ -45,4 +51,6 @@ int main(int argc, char *argv[]) {
     while(1) {
         sleep(100);
     }
+
+    return EXIT_SUCCESS;
 }
