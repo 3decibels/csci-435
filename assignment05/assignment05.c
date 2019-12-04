@@ -53,7 +53,7 @@ int main() {
 	pthread_t p_valid[N_THREADS];
 	struct threadArg *args[N_THREADS];
 	int p_number = 0;
-	int counter = 0; // shared resource
+	int counter = 0;
 
 	struct ticketShared *myShared = (struct ticketShared *) malloc(sizeof(struct ticketShared));
 	if(!myShared) {
